@@ -36,16 +36,22 @@ const TeamsListPage: React.FunctionComponent = () => {
 
   const DemoRows: RowData[] = [
     { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 20 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 20 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 20 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 20 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 20 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 20 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 20 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 20 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 20 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 20 },
+    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 4 },
+    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 65 },
+    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 23 },
+    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 76 },
+    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 58 },
+    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 33 },
+    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 75 },
+    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 42 },
+    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 68 },
   ];
+
+  const handleRowClicked = (clickedRow: RowData | undefined) => {
+    if (typeof clickedRow !== 'undefined') {
+      navigateToOneTeamDetails(clickedRow.id);
+    }
+  }
 
   return (
     <StyledAppDiv>
@@ -73,6 +79,7 @@ const TeamsListPage: React.FunctionComponent = () => {
           emptyRowsWhenPaging: false,
           pageSizeOptions: [1, 2, 3, 4, 5, 6]
         }}
+        onRowClick={(e, rowData) => handleRowClicked(rowData)}
       />
     </StyledAppDiv>
   );
