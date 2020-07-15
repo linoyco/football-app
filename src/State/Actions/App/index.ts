@@ -20,3 +20,10 @@ export function saveCurrentTeam(currentTeam: ApiObjects.ITeamDetails): AppAction
         currentTeam: currentTeam
     }
 }
+
+export function fetchPlayerNumber(playerList: ApiObjects.IPlayerDetails[]): AppActions.IFetchPlayerNumber {
+    return {
+        type: AppActions.FETCH_PLAYER_NUMBER,
+        playersList: playerList
+    }
+}

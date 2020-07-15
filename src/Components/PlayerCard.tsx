@@ -1,14 +1,9 @@
 import React from 'react';
-import { CardMedia, Card, CardContent, CardHeader, Typography, Avatar } from '@material-ui/core';
+import { Card, CardContent, CardHeader, Typography, Avatar } from '@material-ui/core';
+import { IPlayersCardList } from '../State/Reducers/app';
 
-interface IProps {
-    playerNumber?: string;
-    fullName?: string;
-    imageUrl: string;
-}
-
-const PlayerCard: React.FunctionComponent<IProps> = ({ playerNumber, fullName, imageUrl }) => (
-    <Card style={{ height: '70%', width: '15%' }}>
+const PlayerCard: React.FunctionComponent<IPlayersCardList> = ({ playerNumber, fullName, imageUrl, id }) => (
+    <Card style={{ height: '100%', width: '15%' }}>
         <CardHeader
             title={
                 <Typography style={{ fontWeight: 'bold', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
