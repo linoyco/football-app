@@ -1,7 +1,11 @@
 import React from 'react';
+import { Dispatch } from 'redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import MaterialTable, { Column } from 'material-table';
+import * as ApiObjects from '../Api/ApiObjects';
+import { fetchTeamsList } from '../State/Actions/App';
 
 const StyledAppDiv: any = styled.div`
   display: flex;
@@ -12,28 +16,16 @@ const StyledAppDiv: any = styled.div`
   height: 80%;
 `;
 
-export interface RowData {
-  // imageUrl: string;
-  // name: string;
-  // address: string;
-  // founded: number;
-  // id: number;
-
-  id: number,
-  name: string,
-  fullName: string,
-  country: string,
-  founded: string,
-  officialPage: string,
-  phone: string,
-  email: string,
-  address: string,
-  badgeURL: string
-
-};
-
 const TeamsListPage: React.FunctionComponent = () => {
   const history = useHistory();
+  const dispatch: Dispatch = useDispatch();
+
+  const localTeamsList: ApiObjects.ITeamsList = useSelector((state: any) => state.app.teamsList);
+
+  React.useEffect(() => {
+    navigateToTeamsList();
+    dispatch(fetchTeamsList());
+  }, []);
 
   const navigateToOneTeamDetails = (teamID: number) => {
     history.push(`/teams/${teamID}`);
@@ -43,18 +35,14 @@ const TeamsListPage: React.FunctionComponent = () => {
     history.push('/teams');
   }
 
-  React.useEffect(() => {
-    navigateToTeamsList();
-  }, []);
-
-  const columns: Array<Column<RowData>> = [
+  const columns: Array<Column<ApiObjects.ITeamDetails>> = [
     { title: '', field: 'badgeURL', sorting: false },
     { title: 'Team name', field: 'name' },
     { title: 'Location', field: 'address' },
     { title: 'Founded', field: 'founded' },
   ];
 
-  const DemoRows: RowData[] = [
+  const DemoRows: ApiObjects.ITeamDetails[] = [
     { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
     { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
     { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
@@ -64,7 +52,7 @@ const TeamsListPage: React.FunctionComponent = () => {
     { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
   ];
 
-  const handleRowClicked = (clickedRow: RowData | undefined) => {
+  const handleRowClicked = (clickedRow: ApiObjects.ITeamDetails | undefined) => {
     if (typeof clickedRow !== 'undefined') {
       navigateToOneTeamDetails(clickedRow.id);
     }
