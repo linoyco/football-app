@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import MaterialTable, { Column } from 'material-table';
 import * as ApiObjects from '../Api/ApiObjects';
-import { fetchTeamsList } from '../State/Actions/App';
+import { fetchTeamsList, fetchPlayersList, saveCurrentTeam } from '../State/Actions/App';
+import { Avatar } from '@material-ui/core';
 
 const StyledAppDiv: any = styled.div`
   display: flex;
@@ -13,14 +14,15 @@ const StyledAppDiv: any = styled.div`
 	align-items: center;
 	align-content: center;
   width: 100%;
-  height: 80%;
+  height: 90%;
+  overflow: auto;
 `;
 
 const TeamsListPage: React.FunctionComponent = () => {
   const history = useHistory();
   const dispatch: Dispatch = useDispatch();
 
-  const localTeamsList: ApiObjects.ITeamsList = useSelector((state: any) => state.app.teamsList);
+  const localTeamsList: ApiObjects.ITeamDetails[] = useSelector((state: any) => state.app.teamsList.data);
 
   React.useEffect(() => {
     navigateToTeamsList();
@@ -36,24 +38,16 @@ const TeamsListPage: React.FunctionComponent = () => {
   }
 
   const columns: Array<Column<ApiObjects.ITeamDetails>> = [
-    { title: '', field: 'badgeURL', sorting: false },
+    { title: 'Symbol', field: 'badgeURL', sorting: false, render: rowData => (<Avatar alt={rowData.fullName} src={rowData.badgeURL} />) },
     { title: 'Team name', field: 'name' },
     { title: 'Location', field: 'address' },
     { title: 'Founded', field: 'founded' },
   ];
 
-  const DemoRows: ApiObjects.ITeamDetails[] = [
-    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
-    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
-    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
-    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
-    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
-    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
-    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
-  ];
-
   const handleRowClicked = (clickedRow: ApiObjects.ITeamDetails | undefined) => {
     if (typeof clickedRow !== 'undefined') {
+      dispatch(fetchPlayersList(clickedRow.id));
+      dispatch(saveCurrentTeam(clickedRow));
       navigateToOneTeamDetails(clickedRow.id);
     }
   }
@@ -63,8 +57,8 @@ const TeamsListPage: React.FunctionComponent = () => {
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       <MaterialTable
         columns={columns}
-        data={DemoRows}
-        style={{ maxHeight: '0px', width: '60%' }}
+        data={localTeamsList}
+        style={{ maxHeight: '0px', width: '80%' }}
         localization={{
           header: { actions: '' }
         }}
