@@ -1,7 +1,12 @@
 {
+  "homepage": "https://linoy-football-app.herokuapp.com/",
   "name": "football-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "6.9.0",
+    "node": "12.16.2"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
