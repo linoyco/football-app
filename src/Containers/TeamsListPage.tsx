@@ -13,11 +13,23 @@ const StyledAppDiv: any = styled.div`
 `;
 
 export interface RowData {
-  imageUrl: string;
-  name: string;
-  address: string;
-  founded: number;
-  id: number;
+  // imageUrl: string;
+  // name: string;
+  // address: string;
+  // founded: number;
+  // id: number;
+
+  id: number,
+  name: string,
+  fullName: string,
+  country: string,
+  founded: string,
+  officialPage: string,
+  phone: string,
+  email: string,
+  address: string,
+  badgeURL: string
+
 };
 
 const TeamsListPage: React.FunctionComponent = () => {
@@ -28,23 +40,20 @@ const TeamsListPage: React.FunctionComponent = () => {
   }
 
   const columns: Array<Column<RowData>> = [
-    { title: '', field: 'imageUrl', sorting: false },
+    { title: '', field: 'badgeURL', sorting: false },
     { title: 'Team name', field: 'name' },
     { title: 'Location', field: 'address' },
     { title: 'Founded', field: 'founded' },
   ];
 
   const DemoRows: RowData[] = [
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 20 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 4 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 65 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 23 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 76 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 58 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 33 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 75 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 42 },
-    { imageUrl: 'll', name: 'Linoy', address: 'Atlit', founded: 1993, id: 68 },
+    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
+    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
+    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
+    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
+    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
+    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
+    { badgeURL: 'll', name: 'Linoy', fullName: 'Cercle Brugge', country: 'Belgium', address: 'Atlit', founded: '1993', id: 20, officialPage: '', email: '', phone: '' },
   ];
 
   const handleRowClicked = (clickedRow: RowData | undefined) => {
@@ -71,11 +80,6 @@ const TeamsListPage: React.FunctionComponent = () => {
           showFirstLastPageButtons: false,
           headerStyle: { fontWeight: 'bold' },
           actionsColumnIndex: -1,
-          // rowStyle: rowData => (
-          //   rowData.tableData.checked === true
-          //     ? { background: '#efeff4' }
-          //     : { background: 'white' }
-          // ),
           emptyRowsWhenPaging: false,
           pageSizeOptions: [1, 2, 3, 4, 5, 6]
         }}
