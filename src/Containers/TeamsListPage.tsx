@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import MaterialTable, { Column } from 'material-table';
-import * as ApiObjects from '../Api/ApiObjects';
-import { fetchTeamsList, fetchPlayersList, saveCurrentTeam, fetchPlayerNumber } from '../State/Actions/App';
 import { Avatar } from '@material-ui/core';
+
+import * as ApiObjects from '../Api/ApiObjects';
+import { fetchTeamsList, fetchPlayersList, saveCurrentTeam } from '../State/Actions/App';
 
 const StyledAppDiv: any = styled.div`
   display: flex;

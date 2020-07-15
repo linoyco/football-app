@@ -8,6 +8,7 @@ export const SAVE_PLAYERS_LIST = 'SAVE_PLAYERS_LIST';
 export const SAVE_CURRENT_TEAM = 'SAVE_CURRENT_TEAM';
 export const FETCH_PLAYER_NUMBER = 'FETCH_PLAYER_NUMBER';
 export const SAVE_PLAYERS_CARD_LIST = 'SAVE_PLAYERS_CARD_LIST';
+export const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE';
 
 export interface IFetchTeamsList {
     type: typeof FETCH_TEAMS_LIST;
@@ -43,10 +44,16 @@ export interface ISavePlayersCardList {
     playersCardList: IPlayersCardList[];
 }
 
+export interface IAppError {
+    type: typeof SET_ERROR_MESSAGE;
+    errorMessage: string;
+}
+
 export type appActionType = IFetchTeamsList
     | ISaveTeamsList
     | IFetchPlayersList
     | ISavePlayersList
     | ISaveCurrentTeam
     | IFetchPlayerNumber
-    | ISavePlayersCardList;
+    | ISavePlayersCardList
+    | IAppError;

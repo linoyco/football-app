@@ -27,4 +27,5 @@ const HeaderBar: React.FunctionComponent = () => (
         </StyledTitle>
     </StyledDiv>
 );
+
 export default HeaderBar;

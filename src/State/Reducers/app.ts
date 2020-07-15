@@ -1,7 +1,7 @@
 import produce from 'immer';
 
 import * as ApiObjects from '../../Api/ApiObjects';
-import { appActionType, SAVE_TEAMS_LIST, SAVE_PLAYERS_LIST, SAVE_CURRENT_TEAM, SAVE_PLAYERS_CARD_LIST } from '../Actions/App/types';
+import { appActionType, SAVE_TEAMS_LIST, SAVE_PLAYERS_LIST, SAVE_CURRENT_TEAM, SAVE_PLAYERS_CARD_LIST, SET_ERROR_MESSAGE } from '../Actions/App/types';
 
 export interface IPlayersCardList {
     playerNumber: string;
@@ -15,6 +15,7 @@ export interface IAppState {
     currentTeam: ApiObjects.ITeamDetails;
     playersList: ApiObjects.IPlayersList;
     playersCardList: IPlayersCardList[];
+    errorMessage: string;
 }
 
 const initialState: IAppState = {
@@ -48,7 +49,8 @@ const initialState: IAppState = {
             page: 0
         }
     },
-    playersCardList: []
+    playersCardList: [],
+    errorMessage: ''
 }
 
 export function appReducer(state: IAppState = initialState, action: appActionType) {
@@ -64,7 +66,10 @@ export function appReducer(state: IAppState = initialState, action: appActionTyp
                 draft.currentTeam = action.currentTeam;
                 break;
             case SAVE_PLAYERS_CARD_LIST:
-                draft.playersCardList = action.playersCardList;                
+                draft.playersCardList = action.playersCardList;
+                break;
+            case SET_ERROR_MESSAGE:
+                draft.errorMessage = action.errorMessage;
                 break;
         }
     });

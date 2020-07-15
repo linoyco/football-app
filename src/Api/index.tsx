@@ -6,7 +6,6 @@ const BASE_URL = 'https://elenasport-io1.p.rapidapi.com/v2/seasons/3';
 const API_KEY = 'a33b96587bmsh894383a0a6111b1p1ba58ejsn32236735484f';
 const GET_TEAMS_URL = '/teams';
 const GET_PLAYERS_URL = '/players';
-
 const GET_ONE_PLAYER_URL = 'https://apiv2.apifootball.com/';
 
 export const getTeamsRequest = () => {
