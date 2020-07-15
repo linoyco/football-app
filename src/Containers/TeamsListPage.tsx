@@ -39,6 +39,14 @@ const TeamsListPage: React.FunctionComponent = () => {
     history.push(`/teams/${teamID}`);
   }
 
+  const navigateToTeamsList = () => {
+    history.push('/teams');
+  }
+
+  React.useEffect(() => {
+    navigateToTeamsList();
+  }, []);
+
   const columns: Array<Column<RowData>> = [
     { title: '', field: 'badgeURL', sorting: false },
     { title: 'Team name', field: 'name' },
@@ -64,7 +72,6 @@ const TeamsListPage: React.FunctionComponent = () => {
 
   return (
     <StyledAppDiv>
-      {/* <button onClick={() => navigateToOneTeamDetails(2)}>click</button> */}
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       <MaterialTable
         columns={columns}
