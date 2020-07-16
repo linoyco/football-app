@@ -13,7 +13,7 @@ const AppRoutes: React.FunctionComponent = () => (
         <HeaderBar />
         <Switch>
             <Route exact path={'/'} component={TeamsListPage} />
-            {/* <Route exact path={TEAMS} component={TeamsListPage} /> */}
+            <Route exact path={TEAMS} component={TeamsListPage} />
             <Route path={ONE_TEAM} component={OneTeamDetails} />
         </Switch>
     </Router>
